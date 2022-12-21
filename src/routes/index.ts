@@ -24,7 +24,7 @@ api.get(
       //if file exists in folder
       if (verifyFileExists(filePath)) {
         //return the file
-        res.sendFile(filePath);
+        res.status(200).sendFile(filePath);
         return;
       }
       //if not, create the transformed image and serve
@@ -32,7 +32,7 @@ api.get(
         width: Number(width),
         height: Number(height)
       }).then(() => {
-        res.sendFile(filePath);
+        res.status(200).sendFile(filePath);
       });
 
       return;
@@ -45,7 +45,7 @@ api.get(
         width: Number(width),
         height: Number(height)
       }).then(() => {
-        res.sendFile(filePath);
+        res.status(200).sendFile(filePath);
         return;
       });
 

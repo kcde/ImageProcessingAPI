@@ -23,7 +23,7 @@ api.get('/image', checkImageDetails_1.default, (req, res) => {
         //if file exists in folder
         if ((0, verifyFileExists_1.default)(filePath)) {
             //return the file
-            res.sendFile(filePath);
+            res.status(200).sendFile(filePath);
             return;
         }
         //if not, create the transformed image and serve
@@ -31,7 +31,7 @@ api.get('/image', checkImageDetails_1.default, (req, res) => {
             width: Number(width),
             height: Number(height)
         }).then(() => {
-            res.sendFile(filePath);
+            res.status(200).sendFile(filePath);
         });
         return;
     }
@@ -42,7 +42,7 @@ api.get('/image', checkImageDetails_1.default, (req, res) => {
             width: Number(width),
             height: Number(height)
         }).then(() => {
-            res.sendFile(filePath);
+            res.status(200).sendFile(filePath);
             return;
         });
         // res.send('folder does not exist, !created it');
