@@ -6,7 +6,7 @@ import { accessSync, constants } from 'fs';
  *
  * @returns Boolean true | false
  */
-function verifyFileExists(path: string): boolean | null {
+function verifyFileExists(path: string): boolean {
   try {
     accessSync(path, constants.F_OK);
     return true;
