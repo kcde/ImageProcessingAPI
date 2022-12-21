@@ -35,7 +35,7 @@ describe('test /api/image endpoint', () => {
   });
 });
 
-describe('test image processing function', () => {
+describe('test image processing function and verifyFileExists', () => {
   const filename = 'fjord.jpg';
   const imageTransformOptions = { width: 222, height: 222 };
   const transformedImageFolder = path.resolve('./src/transformed/fjord');
