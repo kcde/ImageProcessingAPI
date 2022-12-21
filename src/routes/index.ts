@@ -8,7 +8,7 @@ import verifyFileExists from '../utilities/verifyFileExists';
 const api = express.Router();
 
 api.get('/', (req, res) => {
-  res.send('welcome to the image processing api');
+  res.status(200).send('welcome to the image processing api');
 });
 
 api.get(

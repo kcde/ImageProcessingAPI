@@ -7,6 +7,14 @@ import fs from 'fs/promises';
 
 const request = supertest(app);
 
+describe('test /api endpoint', () => {
+  it('should return a status codeof 200', async () => {
+    const response = await request.get('/api');
+
+    expect(response.status).toBe(200);
+  });
+});
+
 describe('test /api/image endpoint', () => {
   it('should return a response code of 400 if image query is not provided', async () => {
     const response = await request.get('/api/image?width=70&height=300');
