@@ -7,7 +7,7 @@ import verifyFileExists from '../utilities/verifyFileExists';
 
 const api = express.Router();
 
-api.get('/', (req, res): void => {
+api.get('/', (req: express.Request, res: express.Response): void => {
   res.status(200).send('welcome to the image processing api');
 });
 
@@ -16,12 +16,18 @@ api.get(
   checkImageDetails,
   (
     req: { query: { file: string; width: string; height: string } },
-    res
+    res: express.Response
   ): void => {
     const { file, width, height } = req.query;
     const filename = file.split('.')[0];
-    const folderPath = path.resolve(`./src/transformed/${filename}`);
-    const filePath = path.resolve(`${folderPath}/${width}x${height}.jpg`);
+    const folderPath = path.resolve(
+      __dirname,
+      '..',
+      '..',
+      'transformed',
+      filename
+    );
+    const filePath = path.resolve(folderPath, `${width}x${height}.jpg`);
     //check if folder exists
     if (verifyFileExists(folderPath)) {
       //if file exists in folder
@@ -42,7 +48,7 @@ api.get(
     }
 
     // if folder does not exist,  create folder and create image and serve image
-    console.log('folder does not exist');
+    console.log(folderPath);
     fs.mkdir(folderPath).then(() => {
       transformImage(file, {
         width: Number(width),

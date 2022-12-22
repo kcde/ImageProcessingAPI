@@ -6,8 +6,11 @@ function checkImageDetails(
   res: Response,
   next: NextFunction
 ): void {
-  const { file, width, height } = req.query;
-  const imagePath = path.resolve(`./src/images/${file}`);
+  const file = req.query.file as unknown as string;
+  const width = req.query.width as unknown as string;
+  const height = req.query.height as unknown as string;
+
+  const imagePath = path.resolve(__dirname, '..', '..', 'images', file);
 
   const imageHeight = Number(height);
   const imageWidth = Number(width);
@@ -28,8 +31,15 @@ function checkImageDetails(
     return;
   }
 
-  if (isNaN(imageHeight) || isNaN(imageWidth)) {
-    res.status(400).send('image and height should be a number');
+  if (
+    isNaN(imageHeight) ||
+    isNaN(imageWidth) ||
+    imageWidth <= 0 ||
+    imageHeight <= 0
+  ) {
+    res
+      .status(400)
+      .send('image and height should be a positive number greater than 0');
     return;
   }
 

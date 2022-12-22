@@ -10,6 +10,7 @@ An API for resizing uploaded images that can be serve with whatever dimension sp
   GET /api/image?file={imageName}&height={heightNumber}&width={widthNumber}
 ```
 
+NOTE:: file name must include the file extension
 NOTE:: All query parameters must be provided in order to get transformed image
 
 ## How it works

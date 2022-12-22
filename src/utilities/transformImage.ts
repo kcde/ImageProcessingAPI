@@ -6,7 +6,7 @@ type TransformOptions = {
   height: number;
 };
 
-const transformedImages = path.resolve('./src/transformed');
+const transformedImages = path.resolve(__dirname, '..', '..', 'transformed');
 
 /**
  *
@@ -19,7 +19,9 @@ async function transformImage(
   image: string,
   options: TransformOptions
 ): Promise<sharp.OutputInfo> {
-  const imageToTransform = path.resolve(`./src/images/${image}`);
+  const imageToTransform = path.resolve(__dirname, '..', '..', 'images', image);
+  console.log(imageToTransform);
+
   const imageName = image.split('.')[0];
   return await sharp(imageToTransform)
     .resize(options)

@@ -38,10 +38,22 @@ describe('test /api/image endpoint', () => {
 describe('test image processing function and verifyFileExists', () => {
   const filename = 'fjord.jpg';
   const imageTransformOptions = { width: 222, height: 222 };
-  const transformedImageFolder = path.resolve('./src/transformed/fjord');
+  const transformedImageFolder = path.resolve(
+    __dirname,
+    '..',
+    '..',
+    'transformed',
+    'fjord'
+  );
+  console.log(transformedImageFolder);
 
   const transformedImagePath = path.resolve(
-    './src/transformed/fjord/222x222.jpg'
+    __dirname,
+    '..',
+    '..',
+    'transformed',
+    'fjord',
+    '222x222.jpg'
   );
 
   beforeAll(async () => {
@@ -56,8 +68,6 @@ describe('test image processing function and verifyFileExists', () => {
   });
 
   it('should return true when verifyFileExists() is run ', async () => {
-    console.log(transformedImageFolder);
-
     return transformImage(filename, imageTransformOptions).then(() => {
       expect(verifyFileExists(transformedImagePath)).toBeTruthy();
     });
