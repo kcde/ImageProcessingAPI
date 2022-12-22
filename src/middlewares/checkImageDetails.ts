@@ -10,17 +10,18 @@ function checkImageDetails(
   const width = req.query.width as unknown as string;
   const height = req.query.height as unknown as string;
 
-  const imagePath = path.resolve(__dirname, '..', '..', 'images', file);
-
   const imageHeight = Number(height);
   const imageWidth = Number(width);
   //check if image is in image folder
-  const isImageAvailable = verifyFileExists(imagePath);
   //check if filename is provided
   if (!file) {
     res.status(400).send('Please provide file name');
     return;
   }
+
+  const imagePath = path.resolve(__dirname, '..', '..', 'images', file);
+  const isImageAvailable = verifyFileExists(imagePath);
+
   if (!isImageAvailable) {
     res.status(400).send('Image not found');
     return;
