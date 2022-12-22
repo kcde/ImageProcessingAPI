@@ -57,14 +57,16 @@ describe('test image processing function and verifyFileExists', () => {
   );
 
   beforeAll(async () => {
-    await fs.mkdir(transformedImageFolder);
+    if (!verifyFileExists(transformedImageFolder)) {
+      await fs.mkdir(transformedImageFolder);
+    }
   });
 
   afterAll(() => {
     //remove file
     fs.unlink(transformedImagePath);
     //delete folder
-    fs.rmdir(transformedImageFolder);
+    //fs.rmdir(transformedImageFolder);
   });
 
   it('should return true when verifyFileExists() is run ', async () => {
