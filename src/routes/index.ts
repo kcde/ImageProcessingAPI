@@ -7,14 +7,17 @@ import verifyFileExists from '../utilities/verifyFileExists';
 
 const api = express.Router();
 
-api.get('/', (req, res) => {
+api.get('/', (req, res): void => {
   res.status(200).send('welcome to the image processing api');
 });
 
 api.get(
   '/image',
   checkImageDetails,
-  (req: { query: { file: string; width: string; height: string } }, res) => {
+  (
+    req: { query: { file: string; width: string; height: string } },
+    res
+  ): void => {
     const { file, width, height } = req.query;
     const filename = file.split('.')[0];
     const folderPath = path.resolve(`./src/transformed/${filename}`);
